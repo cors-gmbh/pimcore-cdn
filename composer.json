@@ -13,7 +13,7 @@
     "azure-front-door"
   ],
   "homepage": "https://www.cors.gmbh",
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "CORS GmbH",
