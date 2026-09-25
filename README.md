@@ -115,3 +115,7 @@ docker compose exec php composer install
 docker compose exec php bin/console pimcore:install --profile cors-cdn-studio
 docker compose exec php composer test
 ```
+
+## License
+
+[MIT](https://opensource.org/license/mit), see [LICENSE.md](LICENSE.md).
