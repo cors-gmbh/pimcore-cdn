@@ -1,0 +1,90 @@
+{
+  "name": "cors/pimcore-cdn",
+  "type": "pimcore-bundle",
+  "description": "CORS - CDN providers for Pimcore's CDN integration (Cloudflare, Google Cloud CDN, AWS CloudFront, Azure Front Door)",
+  "keywords": [
+    "pimcore",
+    "cdn",
+    "cache",
+    "purge",
+    "cloudflare",
+    "google-cloud-cdn",
+    "cloudfront",
+    "azure-front-door"
+  ],
+  "homepage": "https://www.cors.gmbh",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "CORS GmbH",
+      "email": "office@cors.gmbh",
+      "homepage": "https://www.cors.gmbh/",
+      "role": "TEAM"
+    }
+  ],
+  "require": {
+    "php": ">=8.3",
+    "ext-json": "*",
+    "pimcore/pimcore": "^2026.2",
+    "guzzlehttp/guzzle": "^7.0",
+    "psr/log": "^3.0"
+  },
+  "require-dev": {
+    "cors/dev": "^2026.1",
+    "phpunit/phpunit": "^11.0",
+    "symfony/runtime": "^8.1",
+    "symfony/dotenv": "^8.0",
+    "pimcore/studio-backend-bundle": "^2026.2",
+    "pimcore/studio-ui-bundle": "^2026.2",
+    "google/auth": "^1.40",
+    "aws/aws-sdk-php": "^3.300"
+  },
+  "suggest": {
+    "google/auth": "Required for the google provider (Cloud CDN invalidation via Application Default Credentials).",
+    "aws/aws-sdk-php": "Required for the aws provider (CloudFront invalidations)."
+  },
+  "autoload": {
+    "psr-4": {
+      "CORS\\Bundle\\CdnBundle\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "classmap": [
+      "Kernel.php"
+    ],
+    "psr-4": {
+      "App\\": "dev",
+      "CORS\\Bundle\\CdnBundle\\Tests\\": "tests",
+      "Pimcore\\Model\\DataObject\\": "var/classes/DataObject"
+    }
+  },
+  "scripts": {
+    "test": "phpunit",
+    "test:unit": "phpunit --testsuite unit"
+  },
+  "repositories": {
+    "packagist.org": false,
+    "private-packagist": {
+      "type": "composer",
+      "url": "https://repo.packagist.com/cors/"
+    }
+  },
+  "extra": {
+    "pimcore": {
+      "bundles": [
+        "CORS\\Bundle\\CdnBundle\\CORSCdnBundle"
+      ]
+    },
+    "branch-alias": {
+      "dev-2026.x": "2026.x-dev"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true,
+      "symfony/runtime": true
+    }
+  }
+}

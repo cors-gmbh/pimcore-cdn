@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<psalm xmlns:xi="http://www.w3.org/2001/XInclude">
+    <xi:include
+            href="vendor/cors/dev/psalm.xml"
+            xpointer="xmlns(ps=https://getpsalm.org/schema/config)xpointer(/psalm/*[not(self::projectFiles)])"
+    />
+    <projectFiles>
+        <directory name="src" />
+        <ignoreFiles>
+            <directory name="vendor" />
+        </ignoreFiles>
+    </projectFiles>
+    <issueHandlers>
+        <!-- Pimcore marks ThumbnailTransform/CropRegion/AssetWebPath @internal although ImageTransformAdapterInterface hands them to us. -->
+        <InternalMethod><errorLevel type="suppress"><directory name="src/Provider" /><directory name="src/Purge" /></errorLevel></InternalMethod>
+        <InternalProperty><errorLevel type="suppress"><directory name="src/Provider" /></errorLevel></InternalProperty>
+        <!-- Symfony config-tree builder chains always end in an unused ->end(). -->
+        <UnusedMethodCall><errorLevel type="suppress"><file name="src/DependencyInjection/Configuration.php" /></errorLevel></UnusedMethodCall>
+        <UnusedClass errorLevel="info" />
+        <PossiblyUnusedMethod errorLevel="info" />
+        <PossiblyUnusedParam errorLevel="info" />
+        <MissingConstructor errorLevel="info" />
+    </issueHandlers>
+</psalm>

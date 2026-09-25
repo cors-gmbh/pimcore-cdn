@@ -1,0 +1,6 @@
+includes:
+    - vendor/cors/dev/phpstan.neon
+
+parameters:
+    symfony:
+        containerXmlPath: var/cache/dev/KernelDevDebugContainer.xml

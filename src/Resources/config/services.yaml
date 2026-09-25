@@ -1,0 +1,37 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    # Provider purge clients are tagged `pimcore.cdn.purge_client` with a `provider`
+    # attribute; Pimcore's CdnPurgeClientRegistry selects one lazily via CDN_PROVIDER.
+    # Image transform adapters use `pimcore.cdn.image_transform_adapter` / `optimizer`,
+    # selected via CDN_IMAGE_OPTIMIZER. Google and AWS are registered in the extension
+    # (only when their SDK is installed).
+
+    CORS\Bundle\CdnBundle\EventListener\CacheTagHeaderRewriteListener: ~
+
+    CORS\Bundle\CdnBundle\Purge\AssetThumbnailDirectoryResolverInterface:
+        alias: CORS\Bundle\CdnBundle\Purge\PimcoreAssetThumbnailDirectoryResolver
+
+    CORS\Bundle\CdnBundle\Purge\PimcoreAssetThumbnailDirectoryResolver: ~
+
+    CORS\Bundle\CdnBundle\Purge\TagToPathMapper: ~
+
+    #
+    # Cloudflare
+    #
+    CORS\Bundle\CdnBundle\Provider\Cloudflare\CloudflarePurgeClient: ~
+
+    CORS\Bundle\CdnBundle\Provider\Cloudflare\CloudflareImageTransformAdapter: ~
+
+    #
+    # Azure Front Door (plain OAuth2 + ARM REST, no SDK)
+    #
+    CORS\Bundle\CdnBundle\Provider\Azure\FrontDoorPurgeClient: ~
+
+    #
+    # Chain: fans purges out to cors_cdn.chain.providers (stacked CDNs)
+    #
+    CORS\Bundle\CdnBundle\Provider\Chain\ChainPurgeClient: ~
