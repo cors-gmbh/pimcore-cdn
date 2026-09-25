@@ -20,20 +20,7 @@ final class CORSCdnBundle extends AbstractPimcoreBundle
     {
         if (null === $this->extension) {
             $extension = $this->createContainerExtension();
-
-            if (null !== $extension) {
-                if (!$extension instanceof ExtensionInterface) {
-                    throw new \LogicException(sprintf(
-                        'Extension %s must implement %s.',
-                        get_class($extension),
-                        ExtensionInterface::class,
-                    ));
-                }
-
-                $this->extension = $extension;
-            } else {
-                $this->extension = false;
-            }
+            $this->extension = $extension ?? false;
         }
 
         return $this->extension ?: null;

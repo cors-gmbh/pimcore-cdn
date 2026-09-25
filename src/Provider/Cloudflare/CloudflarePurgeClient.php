@@ -83,10 +83,14 @@ final class CloudflarePurgeClient extends AbstractHttpPurgeClient
 
         $body = $this->decodeJson($response);
         if (($body['success'] ?? true) === false) {
-            $errors = array_map(
-                static fn (array $e): string => sprintf('%s (%s)', $e['message'] ?? 'unknown', $e['code'] ?? '-'),
-                $body['errors'] ?? [],
-            );
+            $errors = [];
+            foreach (is_array($body['errors'] ?? null) ? $body['errors'] : [] as $e) {
+                if (is_array($e)) {
+                    $message = is_scalar($e['message'] ?? null) ? (string) $e['message'] : 'unknown';
+                    $code = is_scalar($e['code'] ?? null) ? (string) $e['code'] : '-';
+                    $errors[] = sprintf('%s (%s)', $message, $code);
+                }
+            }
 
             $this->logger->error('Cloudflare purge rejected. Errors: {errors}', ['errors' => implode('; ', $errors)]);
 

@@ -27,8 +27,10 @@ final class PimcoreAssetThumbnailDirectoryResolver implements AssetThumbnailDire
             return null;
         }
 
-        $prefix = (string) (Config::getSystemConfiguration('assets')['frontend_prefixes']['thumbnail'] ?? '');
+        $assets = Config::getSystemConfiguration('assets');
+        $prefixes = is_array($assets) ? ($assets['frontend_prefixes'] ?? null) : null;
+        $prefix = is_array($prefixes) && is_string($prefixes['thumbnail'] ?? null) ? $prefixes['thumbnail'] : '';
 
-        return rtrim($prefix, '/') . rtrim($asset->getPath(), '/') . '/' . $assetId . '/';
+        return rtrim($prefix, '/') . rtrim($asset->getPath() ?? '', '/') . '/' . $assetId . '/';
     }
 }

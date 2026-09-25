@@ -30,7 +30,7 @@
     "psr/log": "^3.0"
   },
   "require-dev": {
-    "cors/dev": "^2026.1",
+    "coreshop/test-setup": "dev-main",
     "phpunit/phpunit": "^11.0",
     "symfony/runtime": "^8.1",
     "symfony/dotenv": "^8.0",
@@ -61,13 +61,6 @@
   "scripts": {
     "test": "phpunit",
     "test:unit": "phpunit --testsuite unit"
-  },
-  "repositories": {
-    "packagist.org": false,
-    "private-packagist": {
-      "type": "composer",
-      "url": "https://repo.packagist.com/cors/"
-    }
   },
   "extra": {
     "pimcore": {

@@ -28,6 +28,9 @@ final class GoogleCloudCdnPurgeClient extends AbstractHttpPurgeClient
 {
     public const SCOPE = 'https://www.googleapis.com/auth/compute';
 
+    /**
+     * @param positive-int $maxTagsPerRequest enforced by the bundle configuration (min 1)
+     */
     public function __construct(
         ClientInterface $httpClient,
         LoggerInterface $logger,

@@ -134,7 +134,8 @@ final class FrontDoorPurgeClient extends AbstractHttpPurgeClient
         }
 
         $this->accessToken = $token;
-        $this->tokenExpiresAt = time() + (int) ($data['expires_in'] ?? 3600);
+        $expiresIn = $data['expires_in'] ?? null;
+        $this->tokenExpiresAt = time() + (is_numeric($expiresIn) ? (int) $expiresIn : 3600);
 
         return $token;
     }
