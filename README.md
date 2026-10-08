@@ -1,3 +1,5 @@
+[![CORS - One system. Down to the Core.](https://raw.githubusercontent.com/cors-gmbh/.github/refs/heads/main/cors-banner.jpg)](https://cors.gmbh)
+
 # CORS Pimcore CDN (cors/pimcore-cdn)
 
 Provider implementations for Pimcore's built-in CDN integration (Pimcore ≥ 2026.2):
